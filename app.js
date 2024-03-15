@@ -8,7 +8,13 @@ function sortear(){
 
     for(let i = 0; i < quantidade; i++){
         numero = obterNumeroAleatório(min, max);
-        sorteados.push(numero);
+        if(sorteados.includes(numero)){
+            i--;
+            numero = obterNumeroAleatório(min, max);            
+        } else {
+            sorteados.push(numero);
+        }
+        
     }
     let mensagem = document.getElementById('resultado');
     mensagem.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${sorteados}</label>`     
