@@ -1,8 +1,17 @@
+/* 
+    1. Impedir que seja colocado em min um número maior que o de max
+*/
+
+console.log(pegarValoresInput());
 
 function sortear(){
-    let quantidade = parseInt(document.getElementById('quantidade').value)
-    let min = parseInt(document.getElementById('de').value);
-    let max = parseInt(document.getElementById('ate').value);
+
+    let valoresInput = pegarValoresInput();
+
+    let quantidade = valoresInput[0];
+    let min = valoresInput[1];
+    let max = valoresInput[2];
+
 
     let sorteados = [];
     let numero; 
@@ -42,11 +51,28 @@ function alterarStatusBotao() {
     }
 }
 
-
 function reiniciar(){
+    limparCampos();
+    document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados: nenhum até agora</label>';
+    alterarStatusBotao();
+}
+
+function limparCampos() {
     document.getElementById('quantidade').value = '';
     document.getElementById('de').value = '';
     document.getElementById('ate').value = '';
-    document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados: nenhum até agora</label>';
-    alterarStatusBotao();
+}
+
+function pegarValoresInput (){
+    let quantidade = parseInt(document.getElementById('quantidade').value);
+    let min = parseInt(document.getElementById('de').value);
+    let max = parseInt(document.getElementById('ate').value);
+
+    if (min > max){
+        limparCampos();
+        alert('O valor mínimo não pode ser maior que o valor máximo');
+
+    } else {
+        return [quantidade, min, max];
+    } 
 }
