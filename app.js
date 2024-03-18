@@ -67,11 +67,15 @@ function pegarValoresInput (){
     let quantidade = parseInt(document.getElementById('quantidade').value);
     let min = parseInt(document.getElementById('de').value);
     let max = parseInt(document.getElementById('ate').value);
+    let quantidadeMaiorQueIntervalo = quantidade > (max - min);
 
-    if (min > max){
+    if (min >= max ){
         limparCampos();
         alert('O valor mínimo não pode ser maior que o valor máximo');
-
+    }
+    else if(quantidadeMaiorQueIntervalo){
+        limparCampos();
+        alert('A quantidade de números a serem sorteados não pode ser maior que o intervalo');
     } else {
         return [quantidade, min, max];
     } 
